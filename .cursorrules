@@ -1,0 +1,41 @@
+Always use type hints in JavaScript/TypeScript, follow Next.js best practices, ensure mobile-first design, and prioritize clean, maintainable code.
+
+# Development Guidelines
+
+## Code Style
+- Use TypeScript for type safety when possible
+- Follow Next.js 14 best practices and conventions
+- Use functional components with hooks
+- Implement proper error handling and loading states
+- Write clean, readable, and maintainable code
+
+## Design Principles
+- Mobile-first responsive design
+- Use Tailwind CSS for consistent styling
+- Follow accessibility best practices (ARIA labels, keyboard navigation)
+- Ensure smooth animations and transitions
+- Maintain brand consistency with primary colors (teal #0D9488, blue #1D4ED8)
+
+## Component Architecture
+- Create reusable components
+- Use proper prop validation
+- Implement proper state management
+- Follow React best practices for performance
+
+## File Organization
+- Keep components in the components/ directory
+- Use lib/ for utility functions and data
+- Organize pages in the pages/ directory
+- Maintain clear separation of concerns
+
+## Performance
+- Optimize images and assets
+- Use Next.js Image component when appropriate
+- Implement proper loading states
+- Minimize bundle size
+
+## Testing
+- Write unit tests for key components
+- Test user interactions and form validation
+- Ensure cross-browser compatibility
+- Test responsive design on various screen sizes
