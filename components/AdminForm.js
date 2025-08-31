@@ -16,6 +16,8 @@ const AdminForm = ({
     price: '',
     instructorId: '',
     image: '',
+    learningOutcomes: '',
+    courseStructure: '',
     name: '',
     biography: '',
     photoUrl: '',
@@ -35,6 +37,8 @@ const AdminForm = ({
         price: data.price || '',
         instructorId: data.instructorId || '',
         image: data.image || '',
+        learningOutcomes: data.learningOutcomes ? (Array.isArray(data.learningOutcomes) ? data.learningOutcomes.join('\n') : data.learningOutcomes) : '',
+        courseStructure: data.courseStructure ? (Array.isArray(data.courseStructure) ? data.courseStructure.map(module => `${module.title} - ${module.description} - ${module.duration}`).join('\n') : data.courseStructure) : '',
         name: data.name || '',
         biography: data.biography || '',
         photoUrl: data.photoUrl || '',
@@ -51,6 +55,8 @@ const AdminForm = ({
         price: '',
         instructorId: '',
         image: type === 'course' ? '/assets/course-placeholder.jpg' : '',
+        learningOutcomes: '',
+        courseStructure: '',
         name: '',
         biography: '',
         photoUrl: type === 'instructor' ? '/assets/instructor-placeholder.jpg' : '',
@@ -95,6 +101,8 @@ const AdminForm = ({
       if (!formData.duration.trim()) newErrors.duration = 'Duration is required'
       if (!formData.price.trim()) newErrors.price = 'Price is required'
       if (!formData.instructorId) newErrors.instructorId = 'Instructor is required'
+      if (!formData.learningOutcomes.trim()) newErrors.learningOutcomes = 'Learning outcomes are required'
+      if (!formData.courseStructure.trim()) newErrors.courseStructure = 'Course structure is required'
     } else if (type === 'instructor') {
       if (!formData.name.trim()) newErrors.name = 'Name is required'
       if (!formData.biography.trim()) newErrors.biography = 'Biography is required'
@@ -109,7 +117,29 @@ const AdminForm = ({
     e.preventDefault()
     
     if (validateForm()) {
-      onSubmit(formData)
+      // Convert learning outcomes and course structure from text to arrays
+      const processedData = { ...formData }
+      if (type === 'course') {
+        processedData.learningOutcomes = formData.learningOutcomes
+          .split('\n')
+          .filter(line => line.trim())
+          .map(line => line.trim())
+        processedData.courseStructure = formData.courseStructure
+          .split('\n')
+          .filter(line => line.trim())
+          .map(line => {
+            const parts = line.split(' - ')
+            if (parts.length >= 2) {
+              return {
+                title: parts[0].trim(),
+                description: parts[1].trim(),
+                duration: parts[2] ? parts[2].trim() : '1 week'
+              }
+            }
+            return { title: line.trim(), description: '', duration: '1 week' }
+          })
+      }
+      onSubmit(processedData)
     }
   }
 
@@ -226,6 +256,42 @@ const AdminForm = ({
           </select>
           {errors.instructorId && <p className="text-red-500 text-sm mt-1">{errors.instructorId}</p>}
         </div>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          What You'll Learn *
+        </label>
+        <textarea
+          name="learningOutcomes"
+          value={formData.learningOutcomes}
+          onChange={handleInputChange}
+          rows="6"
+          className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 ${
+            errors.learningOutcomes ? 'border-red-500' : 'border-gray-300'
+          }`}
+          placeholder="Enter each learning outcome on a new line&#10;Example:&#10;Master modern programming languages and frameworks&#10;Build real-world mobile applications&#10;Understand software development lifecycle"
+        ></textarea>
+        {errors.learningOutcomes && <p className="text-red-500 text-sm mt-1">{errors.learningOutcomes}</p>}
+        <p className="text-sm text-gray-500 mt-1">Enter each learning outcome on a new line</p>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-2">
+          Course Structure *
+        </label>
+        <textarea
+          name="courseStructure"
+          value={formData.courseStructure}
+          onChange={handleInputChange}
+          rows="6"
+          className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 ${
+            errors.courseStructure ? 'border-red-500' : 'border-gray-300'
+          }`}
+          placeholder="Enter each module on a new line in format: Module Title - Description - Duration&#10;Example:&#10;Fundamentals & Setup - Introduction to development environment and basic concepts - 2 weeks&#10;Core Programming - Learning programming languages and frameworks - 6 weeks"
+        ></textarea>
+        {errors.courseStructure && <p className="text-red-500 text-sm mt-1">{errors.courseStructure}</p>}
+        <p className="text-sm text-gray-500 mt-1">Format: Module Title - Description - Duration (one per line)</p>
       </div>
 
       <div>

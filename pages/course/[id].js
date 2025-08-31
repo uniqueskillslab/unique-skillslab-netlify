@@ -118,16 +118,30 @@ export default function CourseDetails() {
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">What You'll Learn</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {getCourseLearningOutcomes(course.category).map((outcome, index) => (
-                    <div key={index} className="flex items-start space-x-3">
-                      <div className="flex-shrink-0 w-6 h-6 bg-primary-500 text-white rounded-full flex items-center justify-center mt-1">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
+                  {course.learningOutcomes && course.learningOutcomes.length > 0 ? (
+                    course.learningOutcomes.map((outcome, index) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <div className="flex-shrink-0 w-6 h-6 bg-primary-500 text-white rounded-full flex items-center justify-center mt-1">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <span className="text-gray-600">{outcome}</span>
                       </div>
-                      <span className="text-gray-600">{outcome}</span>
-                    </div>
-                  ))}
+                    ))
+                  ) : (
+                    // Fallback to hardcoded outcomes if none provided
+                    getCourseLearningOutcomes(course.category).map((outcome, index) => (
+                      <div key={index} className="flex items-start space-x-3">
+                        <div className="flex-shrink-0 w-6 h-6 bg-primary-500 text-white rounded-full flex items-center justify-center mt-1">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <span className="text-gray-600">{outcome}</span>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
 
@@ -135,17 +149,32 @@ export default function CourseDetails() {
               <div className="mb-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">Course Structure</h2>
                 <div className="space-y-4">
-                  {getCourseStructure(course.category).map((module, index) => (
-                    <div key={index} className="border border-gray-200 rounded-lg p-4">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <h3 className="font-semibold text-gray-900">Module {index + 1}: {module.title}</h3>
-                          <p className="text-gray-600 text-sm">{module.description}</p>
+                  {course.courseStructure && course.courseStructure.length > 0 ? (
+                    course.courseStructure.map((module, index) => (
+                      <div key={index} className="border border-gray-200 rounded-lg p-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h3 className="font-semibold text-gray-900">Module {index + 1}: {module.title}</h3>
+                            <p className="text-gray-600 text-sm">{module.description}</p>
+                          </div>
+                          <span className="text-primary-600 font-medium">{module.duration}</span>
                         </div>
-                        <span className="text-primary-600 font-medium">{module.duration}</span>
                       </div>
-                    </div>
-                  ))}
+                    ))
+                  ) : (
+                    // Fallback to hardcoded structure if none provided
+                    getCourseStructure(course.category).map((module, index) => (
+                      <div key={index} className="border border-gray-200 rounded-lg p-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h3 className="font-semibold text-gray-900">Module {index + 1}: {module.title}</h3>
+                            <p className="text-gray-600 text-sm">{module.description}</p>
+                          </div>
+                          <span className="text-primary-600 font-medium">{module.duration}</span>
+                        </div>
+                      </div>
+                    ))
+                  )}
                 </div>
               </div>
             </div>

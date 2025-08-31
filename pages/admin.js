@@ -266,6 +266,9 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
                           <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Instructor
                           </th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Content
+                          </th>
                           <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Actions
                           </th>
@@ -297,6 +300,16 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                               {course.instructor?.name || 'N/A'}
+                            </td>
+                            <td className="px-6 py-4 text-sm text-gray-900">
+                              <div className="space-y-1">
+                                <div className="text-xs">
+                                  <span className="font-medium">Learning Outcomes:</span> {course.learningOutcomes ? course.learningOutcomes.length : 0} items
+                                </div>
+                                <div className="text-xs">
+                                  <span className="font-medium">Modules:</span> {course.courseStructure ? course.courseStructure.length : 0} modules
+                                </div>
+                              </div>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                               <button
