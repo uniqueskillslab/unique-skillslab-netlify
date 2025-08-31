@@ -73,7 +73,7 @@ The website includes Google Maps embeds. For production:
 
 ### Demo Credentials
 - **Username**: `admin`
-- **Password**: `password123`
+
 
 ### Access Admin Panel
 1. Navigate to `/login`

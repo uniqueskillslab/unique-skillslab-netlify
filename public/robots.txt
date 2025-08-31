@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Sitemap location (Dynamic)
+Sitemap: https://unique-skills-lab.vercel.app/api/sitemap.xml
+
+# Allow all pages to be crawled
+Allow: /courses
+Allow: /about
+Allow: /course/
+
+# Disallow admin and login pages from search results
+Disallow: /admin
+Disallow: /login
+
+# Crawl delay (optional)
+Crawl-delay: 1

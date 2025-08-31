@@ -63,7 +63,7 @@ export default function Login({ isAuthenticated, setIsAuthenticated }) {
       await new Promise(resolve => setTimeout(resolve, 1000))
       
       // Check credentials (hardcoded for demo)
-      if (formData.username === 'admin' && formData.password === 'password123') {
+      if (formData.username === 'admin' && formData.password === 'ali123') {
         // Store authentication token
         localStorage.setItem('authToken', 'demo-token')
         setIsAuthenticated(true)
@@ -185,15 +185,7 @@ export default function Login({ isAuthenticated, setIsAuthenticated }) {
             </div>
           </form>
 
-          <div className="text-center">
-            <div className="bg-white/10 rounded-lg p-4">
-              <p className="text-white text-sm">
-                <strong>Demo Credentials:</strong><br />
-                Username: <code className="bg-white/20 px-1 rounded">admin</code><br />
-                Password: <code className="bg-white/20 px-1 rounded">password123</code>
-              </p>
-            </div>
-          </div>
+
         </div>
       </div>
     </>
