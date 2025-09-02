@@ -6,7 +6,8 @@ const AdminForm = ({
   onSubmit, 
   onCancel, 
   instructors = [], 
-  courses = [] 
+  courses = [],
+  categories = []
 }) => {
   const [formData, setFormData] = useState({
     title: '',
@@ -16,6 +17,7 @@ const AdminForm = ({
     price: '',
     instructorId: '',
     image: '',
+    pdfLink: '',
     learningOutcomes: '',
     courseStructure: '',
     name: '',
@@ -37,6 +39,7 @@ const AdminForm = ({
         price: data.price || '',
         instructorId: data.instructorId || '',
         image: data.image || '',
+        pdfLink: data.pdfLink || '',
         learningOutcomes: data.learningOutcomes ? (Array.isArray(data.learningOutcomes) ? data.learningOutcomes.join('\n') : data.learningOutcomes) : '',
         courseStructure: data.courseStructure ? (Array.isArray(data.courseStructure) ? data.courseStructure.map(module => `${module.title} - ${module.description} - ${module.duration}`).join('\n') : data.courseStructure) : '',
         name: data.name || '',
@@ -55,6 +58,7 @@ const AdminForm = ({
         price: '',
         instructorId: '',
         image: type === 'course' ? '/assets/course-placeholder.jpg' : '',
+        pdfLink: type === 'course' ? '/assets/course-structure.pdf' : '',
         learningOutcomes: '',
         courseStructure: '',
         name: '',
@@ -176,8 +180,11 @@ const AdminForm = ({
             }`}
           >
             <option value="">Select category</option>
-            <option value="Media">Media</option>
-            <option value="IT">IT</option>
+            {categories.map(category => (
+              <option key={category.id} value={category.name}>
+                {category.name}
+              </option>
+            ))}
           </select>
           {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category}</p>}
         </div>
@@ -294,19 +301,36 @@ const AdminForm = ({
         <p className="text-sm text-gray-500 mt-1">Format: Module Title - Description - Duration (one per line)</p>
       </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
-          Image Path
-        </label>
-        <input
-          type="text"
-          name="image"
-          value={formData.image}
-          onChange={handleInputChange}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
-          placeholder="e.g., /assets/course-image.jpg"
-        />
-        <p className="text-sm text-gray-500 mt-1">Enter the path to the image file (e.g., /assets/course-image.jpg)</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Image Path
+          </label>
+          <input
+            type="text"
+            name="image"
+            value={formData.image}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+            placeholder="e.g., /assets/course-image.jpg"
+          />
+          <p className="text-sm text-gray-500 mt-1">Enter the path to the image file</p>
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            PDF Download Link
+          </label>
+          <input
+            type="text"
+            name="pdfLink"
+            value={formData.pdfLink}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+            placeholder="e.g., /assets/course-structure.pdf"
+          />
+          <p className="text-sm text-gray-500 mt-1">Enter the path to the PDF file for download</p>
+        </div>
       </div>
     </>
   )

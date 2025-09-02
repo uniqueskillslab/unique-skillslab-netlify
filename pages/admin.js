@@ -3,16 +3,21 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import AdminForm from '../components/AdminForm'
 import ContactMessageForm from '../components/ContactMessageForm'
+import CategoryForm from '../components/CategoryForm'
 import ImageWithFallback from '../components/ImageWithFallback'
 import { 
   getCourses, 
   getInstructors, 
+  getCategories,
   addCourse, 
   updateCourse, 
   deleteCourse, 
   addInstructor, 
   updateInstructor, 
   deleteInstructor,
+  addCategory,
+  updateCategory,
+  deleteCategory,
   getContactMessages,
   updateContactMessage,
   deleteContactMessage,
@@ -23,6 +28,7 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
   const router = useRouter()
   const [courses, setCourses] = useState([])
   const [instructors, setInstructors] = useState([])
+  const [categories, setCategories] = useState([])
   const [contactMessages, setContactMessages] = useState([])
   const [messageStats, setMessageStats] = useState({ total: 0, pending: 0, responded: 0, closed: 0 })
   const [activeTab, setActiveTab] = useState('courses')
@@ -44,6 +50,7 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
   const loadData = () => {
     setCourses(getCourses())
     setInstructors(getInstructors())
+    setCategories(getCategories())
     setContactMessages(getContactMessages())
     setMessageStats(getMessageStats())
   }
@@ -69,6 +76,8 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
           deleteCourse(id)
         } else if (type === 'instructor') {
           deleteInstructor(id)
+        } else if (type === 'category') {
+          deleteCategory(id)
         } else if (type === 'message') {
           deleteContactMessage(id)
         }
@@ -99,6 +108,12 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
           result = updateInstructor(editingItem.id, formData)
         } else {
           result = addInstructor(formData)
+        }
+      } else if (formType === 'category') {
+        if (editingItem) {
+          result = updateCategory(editingItem.id, formData)
+        } else {
+          result = addCategory(formData)
         }
       } else if (formType === 'message') {
         result = updateContactMessage(editingItem.id, formData)
@@ -193,6 +208,16 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
                Instructors ({instructors.length})
              </button>
              <button
+               onClick={() => setActiveTab('categories')}
+               className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors duration-200 ${
+                 activeTab === 'categories'
+                   ? 'bg-white text-primary-600 shadow-sm'
+                   : 'text-gray-600 hover:text-gray-900'
+               }`}
+             >
+               Categories ({categories.length})
+             </button>
+             <button
                onClick={() => setActiveTab('messages')}
                className={`flex-1 py-2 px-4 rounded-md font-medium transition-colors duration-200 ${
                  activeTab === 'messages'
@@ -213,6 +238,12 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
                    onSubmit={handleFormSubmit}
                    onCancel={handleFormCancel}
                  />
+               ) : formType === 'category' ? (
+                 <CategoryForm
+                   data={editingItem}
+                   onSubmit={handleFormSubmit}
+                   onCancel={handleFormCancel}
+                 />
                ) : (
                  <AdminForm
                    type={formType}
@@ -221,6 +252,7 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
                    onCancel={handleFormCancel}
                    instructors={instructors}
                    courses={courses}
+                   categories={categories}
                  />
                )}
              </>
@@ -231,6 +263,7 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
                 <h2 className="text-2xl font-bold text-gray-900">
                   {activeTab === 'courses' ? 'Courses' : 
                    activeTab === 'instructors' ? 'Instructors' : 
+                   activeTab === 'categories' ? 'Categories' :
                    'Contact Messages'}
                 </h2>
                 {activeTab !== 'messages' && (
@@ -239,7 +272,9 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
                     className="btn-primary"
                     disabled={loading}
                   >
-                    Add {activeTab === 'courses' ? 'Course' : 'Instructor'}
+                    Add {activeTab === 'courses' ? 'Course' : 
+                          activeTab === 'instructors' ? 'Instructor' : 
+                          'Category'}
                   </button>
                 )}
               </div>
@@ -398,6 +433,66 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
                               </button>
                               <button
                                 onClick={() => handleDelete(instructor.id, 'instructor')}
+                                className="text-red-600 hover:text-red-900"
+                                disabled={loading}
+                              >
+                                Delete
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+              {activeTab === 'categories' && (
+                <div className="bg-white rounded-lg shadow overflow-hidden">
+                  <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-gray-200">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Category Name
+                          </th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Description
+                          </th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Created
+                          </th>
+                          <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Actions
+                          </th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-white divide-y divide-gray-200">
+                        {categories.map((category) => (
+                          <tr key={category.id} className="hover:bg-gray-50">
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <div className="text-sm font-medium text-gray-900">
+                                {category.name}
+                              </div>
+                            </td>
+                            <td className="px-6 py-4">
+                              <div className="text-sm text-gray-900">
+                                {category.description}
+                              </div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                              {new Date(category.createdAt).toLocaleDateString()}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                              <button
+                                onClick={() => handleEdit(category, 'category')}
+                                className="text-primary-600 hover:text-primary-900 mr-4"
+                                disabled={loading}
+                              >
+                                Edit
+                              </button>
+                              <button
+                                onClick={() => handleDelete(category.id, 'category')}
                                 className="text-red-600 hover:text-red-900"
                                 disabled={loading}
                               >
