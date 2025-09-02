@@ -8,8 +8,12 @@ export default function Home() {
   const [courses, setCourses] = useState([])
   const [currentTagline, setCurrentTagline] = useState(0)
 
-  useEffect(() => {
+  const loadData = () => {
     setCourses(getCourses())
+  }
+
+  useEffect(() => {
+    loadData()
     
     // Rotate taglines
     const interval = setInterval(() => {
@@ -17,6 +21,40 @@ export default function Home() {
     }, 3000)
     
     return () => clearInterval(interval)
+  }, [])
+
+  // Refresh data when page becomes visible or window gains focus
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        loadData()
+      }
+    }
+
+    const handleFocus = () => {
+      loadData()
+    }
+
+    const handleStorageChange = (e) => {
+      if (e.key && e.key.startsWith('usl_')) {
+        loadData()
+      }
+    }
+
+    // Listen for various events that indicate data might have changed
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    window.addEventListener('focus', handleFocus)
+    window.addEventListener('storage', handleStorageChange)
+    
+    // Also refresh periodically (every 30 seconds) to catch any missed updates
+    const interval = setInterval(loadData, 30000)
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      window.removeEventListener('focus', handleFocus)
+      window.removeEventListener('storage', handleStorageChange)
+      clearInterval(interval)
+    }
   }, [])
 
   const taglines = [

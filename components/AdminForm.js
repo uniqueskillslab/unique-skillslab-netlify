@@ -129,7 +129,7 @@ const AdminForm = ({
       if (!formData.category.trim()) newErrors.category = 'Category is required'
       if (!formData.duration.trim()) newErrors.duration = 'Duration is required'
       if (!formData.price.trim()) newErrors.price = 'Price is required'
-      if (!formData.instructorId) newErrors.instructorId = 'Instructor is required'
+      // Instructor is now optional - no validation needed
       if (!formData.learningOutcomes.trim()) newErrors.learningOutcomes = 'Learning outcomes are required'
       if (!formData.courseStructure.trim()) newErrors.courseStructure = 'Course structure is required'
     } else if (type === 'instructor') {
@@ -336,7 +336,7 @@ const AdminForm = ({
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Instructor *
+            Instructor (Optional)
           </label>
           <select
             name="instructorId"

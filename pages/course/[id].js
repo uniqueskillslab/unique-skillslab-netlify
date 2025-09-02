@@ -11,7 +11,7 @@ export default function CourseDetails() {
   const [instructors, setInstructors] = useState([])
   const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
+  const loadData = () => {
     if (id) {
       const courseData = getCourseById(parseInt(id))
       const allInstructors = getInstructors()
@@ -23,6 +23,44 @@ export default function CourseDetails() {
         router.push('/courses')
       }
       setLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    loadData()
+  }, [id, router])
+
+  // Refresh data when page becomes visible or window gains focus
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        loadData()
+      }
+    }
+
+    const handleFocus = () => {
+      loadData()
+    }
+
+    const handleStorageChange = (e) => {
+      if (e.key && e.key.startsWith('usl_')) {
+        loadData()
+      }
+    }
+
+    // Listen for various events that indicate data might have changed
+    document.addEventListener('visibilitychange', handleVisibilityChange)
+    window.addEventListener('focus', handleFocus)
+    window.addEventListener('storage', handleStorageChange)
+    
+    // Also refresh periodically (every 30 seconds) to catch any missed updates
+    const interval = setInterval(loadData, 30000)
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange)
+      window.removeEventListener('focus', handleFocus)
+      window.removeEventListener('storage', handleStorageChange)
+      clearInterval(interval)
     }
   }, [id, router])
 
