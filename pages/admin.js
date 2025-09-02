@@ -20,9 +20,9 @@ import {
   getContactMessages,
   updateContactMessage,
   deleteContactMessage,
-  getMessageStats,
-  debugLocalStorage
+  getMessageStats
 } from '../lib/data'
+
 
 export default function Admin({ isAuthenticated, setIsAuthenticated }) {
   const router = useRouter()
@@ -72,8 +72,10 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
       setLoading(true)
       
       try {
+        console.log(`Deleting ${type} with ID:`, id)
         if (type === 'course') {
-          deleteCourse(id)
+          const result = deleteCourse(id)
+          console.log('Delete course result:', result)
         } else if (type === 'instructor') {
           deleteInstructor(id)
         } else if (type === 'message') {
@@ -83,6 +85,7 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
         loadData()
         alert(`${type.charAt(0).toUpperCase() + type.slice(1)} deleted successfully!`)
       } catch (error) {
+        console.error(`Error deleting ${type}:`, error)
         alert(`Error deleting ${type}: ${error.message}`)
       } finally {
         setLoading(false)
@@ -183,15 +186,21 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
                    <div className="text-sm text-primary-100">Pending Messages</div>
                  </div>
                  
+
                  <button
                    onClick={() => {
-                     debugLocalStorage()
-                     alert('Check browser console for localStorage debug info')
+                     if (confirm('This will clear ALL admin-added courses and categories. Are you sure?')) {
+                       localStorage.removeItem('usl_admin_courses')
+                       localStorage.removeItem('usl_admin_categories')
+                       window.location.reload()
+                     }
                    }}
-                   className="bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg transition-colors duration-200 mr-2"
+                   className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg transition-colors duration-200 mr-2"
                  >
-                   Debug Data
+                   Clear Admin Data
                  </button>
+                 
+
                  
                  <button
                    onClick={() => {

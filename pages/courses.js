@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
-import { getCourses, getCategories } from '../lib/data'
+import { getCourses, getCategories, refreshDataFromServer } from '../lib/data'
+
 import ImageWithFallback from '../components/ImageWithFallback'
 
 export default function Courses() {
@@ -31,24 +32,51 @@ export default function Courses() {
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (!document.hidden) {
-        loadData()
+        // Refresh data from server when page becomes visible
+        refreshDataFromServer()
+        // Wait a bit for server data to load, then refresh UI
+        setTimeout(() => {
+          loadData()
+        }, 1000)
       }
     }
 
     const handleFocus = () => {
-      loadData()
+      // Refresh data from server when window gains focus
+      refreshDataFromServer()
+      setTimeout(() => {
+        loadData()
+      }, 1000)
     }
 
     const handleStorageChange = (e) => {
       if (e.key && e.key.startsWith('usl_')) {
+        console.log('Storage change detected:', e.key, e.newValue)
         loadData()
       }
     }
+
+    // Listen for file update events from the real file updater
+    const handleCoursesFileUpdate = (event) => {
+      console.log('Courses file updated (same tab), refreshing data...')
+      loadData()
+    }
+
+    const handleCategoriesFileUpdate = (event) => {
+      console.log('Categories file updated (same tab), refreshing data...')
+      loadData()
+    }
+
+    // Cross-browser updates handled via localStorage sync
 
     // Listen for various events that indicate data might have changed
     document.addEventListener('visibilitychange', handleVisibilityChange)
     window.addEventListener('focus', handleFocus)
     window.addEventListener('storage', handleStorageChange)
+    window.addEventListener('uslCoursesFileUpdated', handleCoursesFileUpdate)
+    window.addEventListener('uslCategoriesFileUpdated', handleCategoriesFileUpdate)
+    
+    // Listen for cross-browser updates (removed - using localStorage sync instead)
     
     // Also refresh periodically (every 30 seconds) to catch any missed updates
     const interval = setInterval(loadData, 30000)
@@ -57,6 +85,10 @@ export default function Courses() {
       document.removeEventListener('visibilitychange', handleVisibilityChange)
       window.removeEventListener('focus', handleFocus)
       window.removeEventListener('storage', handleStorageChange)
+      window.removeEventListener('uslCoursesFileUpdated', handleCoursesFileUpdate)
+      window.removeEventListener('uslCategoriesFileUpdated', handleCategoriesFileUpdate)
+      // cleanupCoursesListener() - removed
+      // cleanupCategoriesListener() - removed
       clearInterval(interval)
     }
   }, [])
