@@ -14,7 +14,9 @@ export default function Courses() {
 
   useEffect(() => {
     const allCourses = getCourses()
-    const allCategories = ['All', ...getCategories()]
+    const allCategoriesData = getCategories()
+    const categoryNames = allCategoriesData.map(cat => cat.name)
+    const allCategories = ['All', ...categoryNames]
     
     setCourses(allCourses)
     setFilteredCourses(allCourses)

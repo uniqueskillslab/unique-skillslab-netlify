@@ -311,14 +311,14 @@ export default function About() {
               <h3 className="text-2xl font-bold text-gray-900 mb-6">Location</h3>
               <div className="bg-white rounded-lg overflow-hidden shadow-lg">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.5!2d73.9667!3d31.3667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDIyJzAwLjAiTiA3M8KwNTgnMDAuMCJF!5e0!3m2!1sen!2spk!4v1234567890"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2184.082706058333!2d73.94899087356549!3d31.191081723967823!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39185b83806953ff%3A0x2dbd883cdcd1d19a!2sPhool%20Nagar%2C%20Pakistan!5e0!3m2!1sen!2s!4v1756820189604!5m2!1sen!2s"
                   width="100%"
                   height="300"
                   style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  title="Unique Skills Lab Location"
+                  title="Unique Skills Lab Location - Phool Nagar, Pakistan"
                 ></iframe>
               </div>
             </div>

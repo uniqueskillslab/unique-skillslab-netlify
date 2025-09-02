@@ -7,7 +7,9 @@ const AdminForm = ({
   onCancel, 
   instructors = [], 
   courses = [],
-  categories = []
+  categories = [],
+  onAddCategory,
+  onDeleteCategory
 }) => {
   const [formData, setFormData] = useState({
     title: '',
@@ -27,6 +29,9 @@ const AdminForm = ({
     courses: []
   })
   const [errors, setErrors] = useState({})
+  const [showAddCategory, setShowAddCategory] = useState(false)
+  const [newCategoryName, setNewCategoryName] = useState('')
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(null)
 
   useEffect(() => {
     if (data && Object.keys(data).length > 0) {
@@ -93,6 +98,26 @@ const AdminForm = ({
       ...prev,
       [name]: selectedOptions
     }))
+  }
+
+  const handleAddNewCategory = () => {
+    if (newCategoryName.trim()) {
+      onAddCategory({ name: newCategoryName.trim() })
+      setFormData(prev => ({ ...prev, category: newCategoryName.trim() }))
+      setNewCategoryName('')
+      setShowAddCategory(false)
+    }
+  }
+
+  const handleDeleteCategory = (categoryId, categoryName) => {
+    if (window.confirm(`Are you sure you want to delete the category "${categoryName}"? This will remove it from all courses using this category and set them to "IT" category.`)) {
+      onDeleteCategory(categoryId)
+      // If the deleted category was selected, clear the selection
+      if (formData.category === categoryName) {
+        setFormData(prev => ({ ...prev, category: '' }))
+      }
+      setShowDeleteConfirm(null)
+    }
   }
 
   const validateForm = () => {
@@ -174,18 +199,85 @@ const AdminForm = ({
           <select
             name="category"
             value={formData.category}
-            onChange={handleInputChange}
+            onChange={(e) => {
+              if (e.target.value === 'add_new') {
+                setShowAddCategory(true)
+              } else {
+                handleInputChange(e)
+              }
+            }}
             className={`w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 ${
               errors.category ? 'border-red-500' : 'border-gray-300'
             }`}
           >
             <option value="">Select category</option>
+            {/* All categories */}
             {categories.map(category => (
               <option key={category.id} value={category.name}>
                 {category.name}
               </option>
             ))}
+            {/* Add new category option */}
+            <option value="add_new" className="text-primary-600 font-semibold">
+              + Add New Category
+            </option>
           </select>
+          
+          {/* Categories Management */}
+          {categories.length > 0 && (
+            <div className="mt-2 p-3 border border-gray-200 rounded-lg bg-gray-50">
+              <h4 className="text-sm font-medium text-gray-700 mb-2">Manage Categories:</h4>
+              <div className="space-y-2">
+                {categories.map(category => (
+                  <div key={category.id} className="flex items-center justify-between bg-white p-2 rounded border">
+                    <span className="text-sm text-gray-700">{category.name}</span>
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteCategory(category.id, category.name)}
+                      className="text-red-500 hover:text-red-700 text-sm px-2 py-1 rounded hover:bg-red-50 transition-colors"
+                      title="Delete category"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                      </svg>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {showAddCategory && (
+            <div className="mt-2 p-3 border border-gray-300 rounded-lg bg-gray-50">
+              <div className="flex space-x-2">
+                <input
+                  type="text"
+                  value={newCategoryName}
+                  onChange={(e) => setNewCategoryName(e.target.value)}
+                  placeholder="Enter new category name"
+                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500"
+                />
+                <button
+                  type="button"
+                  onClick={handleAddNewCategory}
+                  className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+                >
+                  Add
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAddCategory(false)
+                    setNewCategoryName('')
+                  }}
+                  className="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          )}
+          
           {errors.category && <p className="text-red-500 text-sm mt-1">{errors.category}</p>}
         </div>
       </div>
