@@ -44,4 +44,16 @@
   .text-gradient {
     @apply bg-gradient-to-r from-primary-500 to-accent-500 bg-clip-text text-transparent;
   }
+  
+  /* Mobile-responsive image improvements */
+  .course-image {
+    @apply w-full object-cover;
+    aspect-ratio: 16/9;
+  }
+  
+  @media (max-width: 640px) {
+    .course-image {
+      aspect-ratio: 4/3;
+    }
+  }
 }

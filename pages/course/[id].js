@@ -162,7 +162,7 @@ export default function CourseDetails() {
                 <ImageWithFallback
                   src={course.image}
                   alt={course.title}
-                  className="w-full h-80 object-cover rounded-lg shadow-lg"
+                  className="course-image rounded-lg shadow-lg"
                 />
               </div>
 

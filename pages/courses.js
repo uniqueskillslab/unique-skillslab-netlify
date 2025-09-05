@@ -207,14 +207,14 @@ export default function Courses() {
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
                 {filteredCourses.map((course) => (
                   <div key={course.id} className="card group hover:shadow-2xl transition-all duration-300">
                     <div className="relative overflow-hidden rounded-lg mb-4">
                       <ImageWithFallback
                         src={course.image}
                         alt={course.title}
-                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                        className="course-image group-hover:scale-110 transition-transform duration-300"
                       />
                       <div className="absolute top-4 right-4 bg-primary-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
                         {course.category}
