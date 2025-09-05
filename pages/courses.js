@@ -238,7 +238,7 @@ export default function Courses() {
                         <ImageWithFallback
                           src={course.instructor.photoUrl}
                           alt={course.instructor.name}
-                          className="w-10 h-10 rounded-full object-cover"
+                          className="w-10 h-10 rounded-full object-cover aspect-square"
                         />
                         <div>
                           <p className="font-medium text-gray-900">{course.instructor.name}</p>

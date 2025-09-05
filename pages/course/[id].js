@@ -339,7 +339,7 @@ export default function CourseDetails() {
                     <ImageWithFallback
                       src={course.instructor.photoUrl}
                       alt={course.instructor.name}
-                      className="w-16 h-16 rounded-full object-cover"
+                      className="w-16 h-16 rounded-full object-cover aspect-square"
                     />
                     <div>
                       <h4 className="font-semibold text-gray-900">{course.instructor.name}</h4>

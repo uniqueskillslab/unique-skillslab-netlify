@@ -1,0 +1,165 @@
+warning: in the working copy of 'lib/data/courses.js', LF will be replaced by CRLF the next time Git touches it
+[1mdiff --git a/lib/data/courses.js b/lib/data/courses.js[m
+[1mindex 4383393..5a64fdf 100644[m
+[1m--- a/lib/data/courses.js[m
+[1m+++ b/lib/data/courses.js[m
+[36m@@ -11,7 +11,7 @@[m [mexport const courses = [[m
+     schedule: "Fri, Sat, Sun",[m
+     time: "01:00 PM - 04:00 PM",[m
+     prerequisites: "None",[m
+[31m-    image: "/assets/course-computer-basics.jpg",[m
+[32m+[m[32m    image: "/assets/BASIC COMPUTER.png",[m
+     pdfLink: "/assets/course-computer-basics.pdf",[m
+     learningOutcomes: [[m
+       "Understand basic computer hardware and software",[m
+[36m@@ -38,7 +38,7 @@[m [mexport const courses = [[m
+     schedule: "Fri, Sat, Sun",[m
+     time: "02:00 PM - 05:00 PM",[m
+     prerequisites: "Basic computer skills",[m
+[31m-    image: "/assets/course-video-editing.jpg",[m
+[32m+[m[32m    image: "/assets/VIDEO EDITING.png",[m
+     pdfLink: "/assets/course-video-editing.pdf",[m
+     learningOutcomes: [[m
+       "Master professional video editing software",[m
+[36m@@ -56,7 +56,7 @@[m [mexport const courses = [[m
+   },[m
+   {[m
+     id: 3,[m
+[31m-    title: "Graphic Design",[m
+[32m+[m[32m    title: "Basic Graphic Design",[m
+     description: "Master graphic design principles and software like Adobe Suite.",[m
+     category: "Design",[m
+     duration: "3 months",[m
+[36m@@ -65,7 +65,7 @@[m [mexport const courses = [[m
+     schedule: "Fri, Sat, Sun",[m
+     time: "03:00 PM - 06:00 PM",[m
+     prerequisites: "None",[m
+[31m-    image: "/assets/course-graphic-design.jpg",[m
+[32m+[m[32m    image: "/assets/GRAPHIC DESIGNING.png",[m
+     pdfLink: "/assets/course-graphic-design.pdf",[m
+     learningOutcomes: [[m
+       "Master Adobe Creative Suite",[m
+[36m@@ -93,7 +93,7 @@[m [mexport const courses = [[m
+     schedule: "Wed, Thu",[m
+     time: "04:00 PM - 07:00 PM",[m
+     prerequisites: "Basic social media",[m
+[31m-    image: "/assets/course-tiktok-master.jpg",[m
+[32m+[m[32m    image: "/assets/TIKTOK.png",[m
+     pdfLink: "/assets/course-tiktok-master.pdf",[m
+     learningOutcomes: [[m
+       "Master TikTok algorithm and content optimization",[m
+[36m@@ -120,7 +120,7 @@[m [mexport const courses = [[m
+     schedule: "Mon - Thu (Fri OFF)",[m
+     time: "09:00 AM - 05:00 PM",[m
+     prerequisites: "Relevant coursework",[m
+[31m-    image: "/assets/course-internship.jpg",[m
+[32m+[m[32m    image: "/assets/BASIC COMPUTER.png",[m
+     pdfLink: "/assets/course-internship.pdf",[m
+     learningOutcomes: [[m
+       "Gain real-world industry experience",[m
+[36m@@ -147,7 +147,7 @@[m [mexport const courses = [[m
+     schedule: "Mon, Tue",[m
+     time: "09:00 AM - 12:00 PM",[m
+     prerequisites: "None",[m
+[31m-    image: "/assets/course-basic-coding.jpg",[m
+[32m+[m[32m    image: "/assets/BASIC COMPUTER.png",[m
+     pdfLink: "/assets/course-basic-coding.pdf",[m
+     learningOutcomes: [[m
+       "Master C++ programming fundamentals",[m
+[36m@@ -175,7 +175,7 @@[m [mexport const courses = [[m
+     schedule: "Mon, Tue",[m
+     time: "10:00 AM - 01:00 PM",[m
+     prerequisites: "Basic coding",[m
+[31m-    image: "/assets/course-app-development.jpg",[m
+[32m+[m[32m    image: "/assets/APP DEVELOPMENT.png",[m
+     pdfLink: "/assets/course-app-development.pdf",[m
+     learningOutcomes: [[m
+       "Master mobile app development frameworks",[m
+[36m@@ -202,7 +202,7 @@[m [mexport const courses = [[m
+     schedule: "Mon, Tue",[m
+     time: "11:00 AM - 02:00 PM",[m
+     prerequisites: "Basic coding",[m
+[31m-    image: "/assets/course-web-development.jpg",[m
+[32m+[m[32m    image: "/assets/WEB.png",[m
+     pdfLink: "/assets/course-web-development.pdf",[m
+     learningOutcomes: [[m
+       "Master front-end and back-end development",[m
+[36m@@ -229,7 +229,7 @@[m [mexport const courses = [[m
+     schedule: "Wed, Thu",[m
+     time: "05:00 PM - 08:00 PM",[m
+     prerequisites: "None",[m
+[31m-    image: "/assets/course-digital-marketing.jpg",[m
+[32m+[m[32m    image: "/assets/DIGITAL MARKETING.png",[m
+     pdfLink: "/assets/course-digital-marketing.pdf",[m
+     learningOutcomes: [[m
+       "Master SEO and content marketing",[m
+[36m@@ -256,7 +256,7 @@[m [mexport const courses = [[m
+     schedule: "Wed, Thu",[m
+     time: "03:00 PM - 06:00 PM",[m
+     prerequisites: "Basic social media",[m
+[31m-    image: "/assets/course-facebook-monetization.jpg",[m
+[32m+[m[32m    image: "/assets/FACEBOOK.png",[m
+     pdfLink: "/assets/course-facebook-monetization.pdf",[m
+     learningOutcomes: [[m
+       "Master Facebook monetization strategies",[m
+[36m@@ -283,7 +283,7 @@[m [mexport const courses = [[m
+     schedule: "Wed, Thu",[m
+     time: "03:00 PM - 06:00 PM",[m
+     prerequisites: "Basic social media",[m
+[31m-    image: "/assets/course-youtube-monetization.jpg",[m
+[32m+[m[32m    image: "/assets/YOUTUBE.png",[m
+     pdfLink: "/assets/course-youtube-monetization.pdf",[m
+     learningOutcomes: [[m
+       "Master YouTube monetization strategies",[m
+[36m@@ -310,7 +310,7 @@[m [mexport const courses = [[m
+     schedule: "After Complete Course",[m
+     time: "Not Fixed",[m
+     prerequisites: "Online Earning",[m
+[31m-    image: "/assets/course-freelancing.jpg",[m
+[32m+[m[32m    image: "/assets/FREELANCING.png",[m
+     pdfLink: "/assets/course-freelancing.pdf",[m
+     learningOutcomes: [[m
+       "Master Canva for design work",[m
+[1mdiff --git a/pages/admin.js b/pages/admin.js[m
+[1mindex 425479a..eea945f 100644[m
+[1m--- a/pages/admin.js[m
+[1m+++ b/pages/admin.js[m
+[36m@@ -417,7 +417,7 @@[m [mexport default function Admin({ isAuthenticated, setIsAuthenticated }) {[m
+                               <div className="flex items-center">[m
+                                 <div className="h-10 w-10 flex-shrink-0">[m
+                                   <ImageWithFallback[m
+[31m-                                    className="h-10 w-10 rounded-full object-cover"[m
+[32m+[m[32m                                    className="h-10 w-10 rounded-full object-cover aspect-square"[m
+                                     src={instructor.photoUrl}[m
+                                     alt={instructor.name}[m
+                                   />[m
+[1mdiff --git a/pages/course/[id].js b/pages/course/[id].js[m
+[1mindex 1b08c8a..3366c47 100644[m
+[1m--- a/pages/course/[id].js[m
+[1m+++ b/pages/course/[id].js[m
+[36m@@ -339,7 +339,7 @@[m [mexport default function CourseDetails() {[m
+                     <ImageWithFallback[m
+                       src={course.instructor.photoUrl}[m
+                       alt={course.instructor.name}[m
+[31m-                      className="w-16 h-16 rounded-full object-cover"[m
+[32m+[m[32m                      className="w-16 h-16 rounded-full object-cover aspect-square"[m
+                     />[m
+                     <div>[m
+                       <h4 className="font-semibold text-gray-900">{course.instructor.name}</h4>[m
+[1mdiff --git a/pages/courses.js b/pages/courses.js[m
+[1mindex df02239..e465d8e 100644[m
+[1m--- a/pages/courses.js[m
+[1m+++ b/pages/courses.js[m
+[36m@@ -238,7 +238,7 @@[m [mexport default function Courses() {[m
+                         <ImageWithFallback[m
+                           src={course.instructor.photoUrl}[m
+                           alt={course.instructor.name}[m
+[31m-                          className="w-10 h-10 rounded-full object-cover"[m
+[32m+[m[32m                          className="w-10 h-10 rounded-full object-cover aspect-square"[m
+                         />[m
+                         <div>[m
+                           <p className="font-medium text-gray-900">{course.instructor.name}</p>[m
+[1mdiff --git a/public/assets/instructor-ali-ahmad.jpg b/public/assets/instructor-ali-ahmad.jpg[m
+[1mindex 4b7e76d..f75b74f 100644[m
+Binary files a/public/assets/instructor-ali-ahmad.jpg and b/public/assets/instructor-ali-ahmad.jpg differ
+[1mdiff --git a/public/assets/instructor-arslan.jpg 

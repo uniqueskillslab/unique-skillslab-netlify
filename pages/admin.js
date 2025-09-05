@@ -417,7 +417,7 @@ export default function Admin({ isAuthenticated, setIsAuthenticated }) {
                               <div className="flex items-center">
                                 <div className="h-10 w-10 flex-shrink-0">
                                   <ImageWithFallback
-                                    className="h-10 w-10 rounded-full object-cover"
+                                    className="h-10 w-10 rounded-full object-cover aspect-square"
                                     src={instructor.photoUrl}
                                     alt={instructor.name}
                                   />
