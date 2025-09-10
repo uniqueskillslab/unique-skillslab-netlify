@@ -12,7 +12,11 @@ export default function handler(req, res) {
     
     // Check if APK file exists
     if (!fs.existsSync(apkPath)) {
-      return res.status(404).json({ message: 'APK file not found' });
+      console.log('APK file not found at:', apkPath);
+      return res.status(404).json({ 
+        message: 'APK file not found. Please upload UniqueSkillsLab.apk to public/app/ directory.',
+        path: apkPath 
+      });
     }
 
     // Set headers for file download

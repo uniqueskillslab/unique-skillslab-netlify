@@ -8,10 +8,18 @@ export default function DownloadApp() {
   const handleDownload = async () => {
     setIsDownloading(true);
     try {
+      // Check if APK is available first
+      const response = await fetch('/api/download-app');
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(`Download not available: ${errorData.message}`);
+        return;
+      }
       // Trigger download
       window.open('/api/download-app', '_blank');
     } catch (error) {
       console.error('Download failed:', error);
+      alert('Download failed. Please try again later.');
     } finally {
       setIsDownloading(false);
     }
