@@ -1,0 +1,10 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.uniqueskillslab",
+    "sha256_cert_fingerprints": [
+      "CC:8F:44:14:6E:76:4B:5E:AC:6A:A6:C2:4B:5F:1D:FA:5A:47:AC:F8:ED:4E:B9:E7:14:A7:88:36:8A:5B:20:76"
+    ]
+  }
+}]

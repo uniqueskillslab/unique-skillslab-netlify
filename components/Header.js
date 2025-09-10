@@ -26,6 +26,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
     { name: 'Home', href: '/' },
     { name: 'Courses', href: '/courses' },
     { name: 'About', href: '/about' },
+    { name: 'Download App', href: '/download-app' },
     { name: 'Apply as Creator', href: '/apply-creator' },
     { name: 'Contact', href: '#contact' }
   ]
