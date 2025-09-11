@@ -51,8 +51,14 @@ export default function DownloadApp() {
             <div className="flex flex-col md:flex-row items-center gap-8">
               {/* App Icon/Preview */}
               <div className="flex-shrink-0">
-                <div className="w-32 h-32 bg-gradient-to-br from-teal-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <span className="text-white text-4xl font-bold">USL</span>
+                <div className="w-32 h-32 rounded-2xl shadow-lg overflow-hidden">
+                  <Image
+                    src="/assets/usl_logo.png"
+                    alt="UniqueSkillsLab Logo"
+                    width={128}
+                    height={128}
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
 
