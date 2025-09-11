@@ -14,6 +14,7 @@ export default function handler(req, res) {
     { url: '', priority: '1.0', changefreq: 'weekly' },
     { url: '/courses', priority: '0.9', changefreq: 'weekly' },
     { url: '/about', priority: '0.8', changefreq: 'monthly' },
+    { url: '/scholarship', priority: '0.9', changefreq: 'monthly' },
     { url: '/apply-creator', priority: '0.7', changefreq: 'monthly' },
     { url: '/download-app', priority: '0.6', changefreq: 'monthly' },
     { url: '/thank-you', priority: '0.5', changefreq: 'yearly' }

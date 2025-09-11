@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import { getCourses, getCategories, refreshDataFromServer } from '../lib/data'
+import { downloadPDF } from '../lib/downloadUtils'
 
 import ImageWithFallback from '../components/ImageWithFallback'
 
@@ -111,6 +112,17 @@ export default function Courses() {
 
     setFilteredCourses(filtered)
   }, [courses, selectedCategory, searchTerm])
+
+  const handleDownloadPDF = async (course) => {
+    if (course?.pdfLink) {
+      try {
+        await downloadPDF(course.pdfLink, course.title)
+      } catch (error) {
+        console.error('Download failed:', error)
+        window.open(course.pdfLink, '_blank')
+      }
+    }
+  }
 
   return (
     <>
@@ -276,6 +288,19 @@ export default function Courses() {
                         </svg>
                         <span>Enroll Via WhatsApp</span>
                       </button>
+                      
+                      {course.pdfLink && (
+                        <button 
+                          onClick={() => handleDownloadPDF(course)}
+                          className="btn-outline w-full flex items-center justify-center space-x-2"
+                        >
+                          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                          <span>Download Material</span>
+                        </button>
+                      )}
+                      
                       <button 
                         onClick={() => {
                           window.open('tel:03176100190', '_self')

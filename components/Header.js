@@ -25,6 +25,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'Courses', href: '/courses' },
+    { name: 'Scholarship', href: '/scholarship' },
     { name: 'About', href: '/about' },
     { name: 'Download App', href: '/download-app' },
     { name: 'Apply as Creator', href: '/apply-creator' },

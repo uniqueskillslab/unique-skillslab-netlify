@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { getCourses, refreshDataFromServer } from '../lib/data'
+import { downloadPDF } from '../lib/downloadUtils'
 
 import ImageWithFallback from '../components/ImageWithFallback'
+import NotificationBox from '../components/ScrollingTicker'
 
 export default function Home() {
   const [courses, setCourses] = useState([])
@@ -23,6 +25,17 @@ export default function Home() {
     
     return () => clearInterval(interval)
   }, [])
+
+  const handleDownloadPDF = async (course) => {
+    if (course?.pdfLink) {
+      try {
+        await downloadPDF(course.pdfLink, course.title)
+      } catch (error) {
+        console.error('Download failed:', error)
+        window.open(course.pdfLink, '_blank')
+      }
+    }
+  }
 
   // Refresh data when page becomes visible or window gains focus
   useEffect(() => {
@@ -236,6 +249,9 @@ export default function Home() {
               <Link href="/courses" className="btn-secondary text-lg px-8 py-4">
                 Enroll Now
               </Link>
+              <Link href="/scholarship" className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-4 px-8 rounded-lg transition-colors duration-200 text-lg shadow-lg hover:shadow-xl">
+                🎓 Free Courses
+              </Link>
               <Link href="/about" className="btn-outline text-lg px-8 py-4 border-white text-white hover:bg-white hover:text-primary-600">
                 Learn More
               </Link>
@@ -244,22 +260,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Fee Promo Section */}
-      <section className="bg-gradient-to-r from-red-500 to-red-600 text-white py-8">
-        <div className="container-custom text-center">
-          <div className="flex items-center justify-center space-x-4">
-            <div className="animate-pulse">
-              <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-              </svg>
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold">Grand Opening Discount – 20% off for first 20 students</h2>
-              <p className="text-lg">Limited Seats | Admission Open Now</p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Course Overview Section */}
       <section className="section-padding bg-gray-50">
@@ -314,6 +314,18 @@ export default function Home() {
                     </svg>
                     <span>Enroll Via WhatsApp</span>
                   </button>
+                  
+                  {course.pdfLink && (
+                    <button 
+                      onClick={() => handleDownloadPDF(course)}
+                      className="btn-outline w-full flex items-center justify-center space-x-2"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                      <span>Download Material</span>
+                    </button>
+                  )}
                   <button 
                     onClick={() => {
                       window.open('tel:03176100190', '_self')
@@ -390,6 +402,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Notification Box - Only on Homepage */}
+      <NotificationBox />
     </>
   )
 }
