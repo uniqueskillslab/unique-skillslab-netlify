@@ -34,14 +34,14 @@ export default function App({ Component, pageProps }) {
         
         {/* Open Graph / Facebook */}
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://uniqueskillslab.com/" />
+        <meta property="og:url" content="https://unique-skills-lab.vercel.app/" />
         <meta property="og:title" content="Unique Skills Lab - Practical IT & Media Training" />
         <meta property="og:description" content="Learn Media, IT, and Digital Marketing in a Real Studio Environment" />
         <meta property="og:image" content="/assets/usl_logo.png" />
 
         {/* Twitter */}
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="https://uniqueskillslab.com/" />
+        <meta property="twitter:url" content="https://unique-skills-lab.vercel.app/" />
         <meta property="twitter:title" content="Unique Skills Lab - Practical IT & Media Training" />
         <meta property="twitter:description" content="Learn Media, IT, and Digital Marketing in a Real Studio Environment" />
         <meta property="twitter:image" content="/assets/usl_logo.png" />

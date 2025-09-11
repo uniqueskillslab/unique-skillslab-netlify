@@ -2,7 +2,7 @@
 export default function handler(req, res) {
   const baseUrl = req.headers.host.includes('localhost') 
     ? 'http://localhost:3000' 
-    : 'https://your-domain.com'
+    : 'https://unique-skills-lab.vercel.app'
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
