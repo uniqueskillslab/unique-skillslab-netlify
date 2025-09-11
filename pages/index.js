@@ -10,6 +10,7 @@ import NotificationBox from '../components/ScrollingTicker'
 export default function Home() {
   const [courses, setCourses] = useState([])
   const [currentTagline, setCurrentTagline] = useState(0)
+  const [downloadStatus, setDownloadStatus] = useState({})
 
   const loadData = () => {
     setCourses(getCourses())
@@ -29,9 +30,46 @@ export default function Home() {
   const handleDownloadPDF = async (course) => {
     if (course?.pdfLink) {
       try {
-        await downloadPDF(course.pdfLink, course.title)
+        await downloadPDF(
+          course.pdfLink, 
+          course.title,
+          () => {
+            // Download started
+            setDownloadStatus(prev => ({ ...prev, [course.id]: 'Downloading...' }))
+          },
+          (success) => {
+            // Download completed
+            if (success) {
+              setDownloadStatus(prev => ({ ...prev, [course.id]: 'Download started!' }))
+              setTimeout(() => {
+                setDownloadStatus(prev => {
+                  const newStatus = { ...prev }
+                  delete newStatus[course.id]
+                  return newStatus
+                })
+              }, 3000)
+            } else {
+              setDownloadStatus(prev => ({ ...prev, [course.id]: 'Download failed. Opening in new tab...' }))
+              setTimeout(() => {
+                setDownloadStatus(prev => {
+                  const newStatus = { ...prev }
+                  delete newStatus[course.id]
+                  return newStatus
+                })
+              }, 3000)
+            }
+          }
+        )
       } catch (error) {
         console.error('Download failed:', error)
+        setDownloadStatus(prev => ({ ...prev, [course.id]: 'Download failed. Opening in new tab...' }))
+        setTimeout(() => {
+          setDownloadStatus(prev => {
+            const newStatus = { ...prev }
+            delete newStatus[course.id]
+            return newStatus
+          })
+        }, 3000)
         window.open(course.pdfLink, '_blank')
       }
     }
@@ -316,15 +354,39 @@ export default function Home() {
                   </button>
                   
                   {course.pdfLink && (
-                    <button 
-                      onClick={() => handleDownloadPDF(course)}
-                      className="btn-outline w-full flex items-center justify-center space-x-2"
-                    >
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                      <span>Download Material</span>
-                    </button>
+                    <div className="w-full">
+                      <button 
+                        onClick={() => handleDownloadPDF(course)}
+                        disabled={downloadStatus[course.id] === 'Downloading...'}
+                        className={`btn-outline w-full flex items-center justify-center space-x-2 ${
+                          downloadStatus[course.id] === 'Downloading...' ? 'opacity-75 cursor-not-allowed' : ''
+                        }`}
+                      >
+                        {downloadStatus[course.id] === 'Downloading...' ? (
+                          <>
+                            <svg className="w-5 h-5 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                            </svg>
+                            <span>Downloading...</span>
+                          </>
+                        ) : (
+                          <>
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                            <span>Download Material</span>
+                          </>
+                        )}
+                      </button>
+                      
+                      {downloadStatus[course.id] && downloadStatus[course.id] !== 'Downloading...' && (
+                        <div className={`mt-2 text-sm text-center ${
+                          downloadStatus[course.id].includes('failed') ? 'text-red-600' : 'text-green-600'
+                        }`}>
+                          {downloadStatus[course.id]}
+                        </div>
+                      )}
+                    </div>
                   )}
                   <button 
                     onClick={() => {
