@@ -53,8 +53,18 @@ export default function About() {
   return (
     <>
       <Head>
-        <title>About Us - Unique Skills Lab</title>
-        <meta name="description" content="Learn about Unique Skills Lab - a modern training institute built inside a professional news & media studio providing practical IT and Media courses." />
+        <title>About Us - Unique Skills Lab | Professional IT & Media Training Studio</title>
+        <meta name="description" content="Learn about Unique Skills Lab - a modern training institute built inside a professional news & media studio providing practical IT and Media courses in Phoolnagar, Pakistan." />
+        <meta name="keywords" content="about unique skills lab, IT training institute, media studio, professional training, Phoolnagar, Multan, Pakistan, practical courses" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://unique-skills-lab.vercel.app/about" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="About Us - Unique Skills Lab" />
+        <meta property="og:description" content="Learn about Unique Skills Lab - a modern training institute built inside a professional news & media studio providing practical IT and Media courses." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://unique-skills-lab.vercel.app/about" />
+        <meta property="og:image" content="https://unique-skills-lab.vercel.app/assets/usl_logo.png" />
       </Head>
 
       {/* Hero Section */}

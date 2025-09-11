@@ -115,8 +115,18 @@ export default function Courses() {
   return (
     <>
       <Head>
-        <title>Our Courses - Unique Skills Lab</title>
-        <meta name="description" content="Explore our comprehensive range of IT and Media courses including Digital Marketing, App Development, Video Editing, and News Anchoring." />
+        <title>Our Courses - Unique Skills Lab | IT & Media Training Programs</title>
+        <meta name="description" content="Explore our comprehensive range of IT and Media courses including Digital Marketing, App Development, Video Editing, and News Anchoring. Enroll now for 20% off!" />
+        <meta name="keywords" content="IT courses, media courses, digital marketing course, app development course, video editing course, news anchoring course, practical training, studio environment" />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href="https://unique-skills-lab.vercel.app/courses" />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="Our Courses - Unique Skills Lab" />
+        <meta property="og:description" content="Explore our comprehensive range of IT and Media courses including Digital Marketing, App Development, Video Editing, and News Anchoring." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://unique-skills-lab.vercel.app/courses" />
+        <meta property="og:image" content="https://unique-skills-lab.vercel.app/assets/usl_logo.png" />
       </Head>
 
       {/* Hero Section */}

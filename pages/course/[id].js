@@ -114,6 +114,85 @@ export default function CourseDetails() {
         <title>{course.title} - Unique Skills Lab</title>
         <meta name="description" content={course.description} />
         <meta name="keywords" content={`${course.title}, ${course.category}, Unique Skills Lab, training, course`} />
+        
+        {/* Course Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Course",
+              "name": course.title,
+              "description": course.description,
+              "provider": {
+                "@type": "EducationalOrganization",
+                "name": "Unique Skills Lab",
+                "url": "https://unique-skills-lab.vercel.app",
+                "address": {
+                  "@type": "PostalAddress",
+                  "streetAddress": "Makkah Town Multan Road",
+                  "addressLocality": "Phoolnagar",
+                  "addressCountry": "Pakistan"
+                }
+              },
+              "courseCode": course.id,
+              "educationalLevel": "Beginner to Intermediate",
+              "courseMode": "In-person",
+              "timeRequired": course.duration,
+              "inLanguage": "English",
+              "isAccessibleForFree": false,
+              "offers": {
+                "@type": "Offer",
+                "price": course.price,
+                "priceCurrency": "PKR",
+                "availability": "https://schema.org/InStock"
+              },
+              "image": course.image,
+              "url": `https://unique-skills-lab.vercel.app/course/${course.id}`,
+              "teaches": course.learningOutcomes || getCourseLearningOutcomes(course.category),
+              "coursePrerequisites": course.prerequisites || "No prerequisites required",
+              "syllabusSections": course.courseStructure || getCourseStructure(course.category),
+              "instructor": course.instructor ? {
+                "@type": "Person",
+                "name": course.instructor.name,
+                "jobTitle": course.instructor.specialization,
+                "description": course.instructor.biography,
+                "image": course.instructor.photoUrl
+              } : null
+            })
+          }}
+        />
+        
+        {/* Breadcrumb Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Home",
+                  "item": "https://unique-skills-lab.vercel.app"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Courses",
+                  "item": "https://unique-skills-lab.vercel.app/courses"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 3,
+                  "name": course.title,
+                  "item": `https://unique-skills-lab.vercel.app/course/${course.id}`
+                }
+              ]
+            })
+          }}
+        />
       </Head>
 
       {/* Hero Section */}
@@ -172,6 +251,24 @@ export default function CourseDetails() {
                 <p className="text-gray-600 text-lg leading-relaxed">
                   {course.description}
                 </p>
+                
+                {/* Related Courses */}
+                <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-3">Related Courses</h3>
+                  <div className="flex flex-wrap gap-2">
+                    <a href="/courses" className="text-primary-600 hover:text-primary-800 text-sm">
+                      View All Courses →
+                    </a>
+                    <span className="text-gray-400">|</span>
+                    <a href="/about" className="text-primary-600 hover:text-primary-800 text-sm">
+                      Learn About Our Studio →
+                    </a>
+                    <span className="text-gray-400">|</span>
+                    <a href="/courses" className="text-primary-600 hover:text-primary-800 text-sm">
+                      {course.category} Courses →
+                    </a>
+                  </div>
+                </div>
               </div>
 
               {/* What You'll Learn */}

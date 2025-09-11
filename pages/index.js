@@ -130,8 +130,84 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Unique Skills Lab - Practical IT & Media Training</title>
-        <meta name="description" content="Learn Media, IT, and Digital Marketing in a Real Studio Environment. Short courses in Digital Marketing, App Development, Video Editing, and News Anchoring." />
+        <title>Unique Skills Lab - Practical IT & Media Training | Learn Digital Skills in Real Studio</title>
+        <meta name="description" content="Learn Media, IT, and Digital Marketing in a Real Studio Environment. Short courses in Digital Marketing, App Development, Video Editing, and News Anchoring. Enroll now for 20% off!" />
+        <meta name="keywords" content="IT training, media courses, digital marketing, app development, video editing, news anchoring, practical skills, studio training, Phoolnagar, Multan, Pakistan" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Unique Skills Lab" />
+        <link rel="canonical" href="https://unique-skills-lab.vercel.app" />
+        
+        {/* Open Graph Enhanced */}
+        <meta property="og:title" content="Unique Skills Lab - Practical IT & Media Training" />
+        <meta property="og:description" content="Learn Media, IT, and Digital Marketing in a Real Studio Environment. Enroll now for 20% off!" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://unique-skills-lab.vercel.app" />
+        <meta property="og:image" content="https://unique-skills-lab.vercel.app/assets/usl_logo.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:site_name" content="Unique Skills Lab" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter Enhanced */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Unique Skills Lab - Practical IT & Media Training" />
+        <meta name="twitter:description" content="Learn Media, IT, and Digital Marketing in a Real Studio Environment. Enroll now for 20% off!" />
+        <meta name="twitter:image" content="https://unique-skills-lab.vercel.app/assets/usl_logo.png" />
+        <meta name="twitter:site" content="@uniqueskillslab" />
+        <meta name="twitter:creator" content="@uniqueskillslab" />
+        
+        {/* FAQ Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              "mainEntity": [
+                {
+                  "@type": "Question",
+                  "name": "What courses do you offer?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We offer courses in Digital Marketing, App Development, Video Editing, News Anchoring, Web Development, and Graphic Design in a real studio environment."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Where is Unique Skills Lab located?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We are located in Makkah Town Multan Road, Phoolnagar, Pakistan. Our training facility is built inside a professional news & media studio."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Do you provide certificates?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we provide certificates that are recognized locally and internationally by industry professionals upon successful completion of our courses."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "What is the duration of courses?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Our courses are designed as short-term practical programs, typically ranging from 2-12 weeks depending on the course complexity and requirements."
+                  }
+                },
+                {
+                  "@type": "Question",
+                  "name": "Do you offer internship opportunities?",
+                  "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, we provide internship opportunities in our media setup, allowing students to gain valuable work experience and build professional portfolios."
+                  }
+                }
+              ]
+            })
+          }}
+        />
       </Head>
 
       {/* Hero Section */}
