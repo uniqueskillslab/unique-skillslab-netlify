@@ -250,13 +250,13 @@ export default function PlayStoreApp({ appId }) {
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Screenshots</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {app.screenshots.map((screenshot, index) => (
-                <div key={index} className="aspect-[9/16] rounded-lg overflow-hidden bg-gray-100">
+                <div key={index} className="rounded-lg overflow-hidden bg-gray-100 shadow-lg">
                   <Image
                     src={screenshot}
                     alt={`${app.name} Screenshot ${index + 1}`}
-                    width={200}
-                    height={355}
-                    className="w-full h-full object-cover"
+                    width={300}
+                    height={600}
+                    className="w-full h-auto object-contain"
                   />
                 </div>
               ))}
