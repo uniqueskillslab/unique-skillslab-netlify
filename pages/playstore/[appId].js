@@ -17,9 +17,9 @@ export default function PlayStoreApp({ appId }) {
       longDescription: 'UniqueSkillsLab is your gateway to mastering digital skills in a real studio environment. Our app provides comprehensive courses in Digital Marketing, App Development, Video Editing, and News Anchoring. Learn at your own pace with offline access to course materials, track your progress, and earn recognized certificates upon completion.',
       logo: '/assets/usl_logo.png',
       screenshots: [
-        '/assets/course-web-development.jpg',
-        '/assets/course-graphic-design.jpg',
-        '/assets/course-facebook-monetization.jpg'
+        '/assets/uniqueskillslab1.jpeg',
+        '/assets/uniqueskillslab2.jpeg',
+        '/assets/uniqueskillslab3.jpeg'
       ],
       features: [
         'Offline course access',
@@ -48,9 +48,9 @@ export default function PlayStoreApp({ appId }) {
       longDescription: 'UniqeNewsHD brings you the latest news and updates in high definition. Stay informed with real-time notifications, watch HD video content, and get breaking news alerts. Our app provides comprehensive coverage of local and international news with a focus on technology, education, and current affairs.',
       logo: '/assets/uniqenewshd_logo.png',
       screenshots: [
-        '/assets/course-tiktok-mastery.jpg',
-        '/assets/course-youtube-monetization.jpg',
-        '/assets/course-placeholder.jpg'
+        '/assets/uniquenewshdscreenshot1.jpeg',
+        '/assets/uniquenewshdscreenshot2.jpeg',
+        '/assets/uniquenewshdscreenshot3.jpeg'
       ],
       features: [
         'Latest news updates',
