@@ -12,6 +12,12 @@
   to = "/.netlify/functions/:splat"
   status = 200
 
+# Redirect sitemap.xml to the sitemap function
+[[redirects]]
+  from = "/sitemap.xml"
+  to = "/.netlify/functions/sitemap"
+  status = 200
+
 # Headers for security (matching your Next.js config)
 [[headers]]
   for = "/*"
