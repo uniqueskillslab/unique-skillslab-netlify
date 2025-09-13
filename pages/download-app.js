@@ -38,25 +38,9 @@ export default function DownloadApp() {
     }
   ];
 
-  const handleDownload = async (appId) => {
-    setDownloadingApp(appId);
-    try {
-      const app = apps.find(a => a.id === appId);
-      // Check if APK is available first
-      const response = await fetch(app.apkPath);
-      if (!response.ok) {
-        const errorData = await response.json();
-        alert(`Download not available: ${errorData.message}`);
-        return;
-      }
-      // Trigger download
-      window.open(app.apkPath, '_blank');
-    } catch (error) {
-      console.error('Download failed:', error);
-      alert('Download failed. Please try again later.');
-    } finally {
-      setDownloadingApp(null);
-    }
+  const handleDownload = (appId) => {
+    // Navigate to Play Store-like page
+    window.location.href = `/playstore/${appId}`;
   };
 
   return (
