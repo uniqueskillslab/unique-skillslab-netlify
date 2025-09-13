@@ -2,12 +2,16 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  // Enable static export for Netlify
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true
+  },
   // SEO and performance optimizations
   compress: true,
   poweredByHeader: false,
   generateEtags: false,
-  // Enable static optimization
-  trailingSlash: false,
   // Add security headers
   async headers() {
     return [
