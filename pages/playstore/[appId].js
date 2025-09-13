@@ -348,7 +348,19 @@ export default function PlayStoreApp({ appId }) {
   )
 }
 
-export async function getServerSideProps({ params }) {
+export async function getStaticPaths() {
+  const paths = [
+    { params: { appId: 'uniqueskillslab' } },
+    { params: { appId: 'uniqenewshd' } }
+  ]
+  
+  return {
+    paths,
+    fallback: false
+  }
+}
+
+export async function getStaticProps({ params }) {
   return {
     props: {
       appId: params.appId
