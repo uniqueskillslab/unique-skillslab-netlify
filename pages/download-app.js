@@ -16,7 +16,7 @@ export default function DownloadApp() {
         'Progress tracking',
         'Certificate downloads'
       ],
-      apkPath: '/api/download-app?app=uniqueskillslab'
+      apkPath: '/app/UniqueSkillsLab.apk'
     },
     {
       id: 'uniqenewshd',
@@ -28,7 +28,7 @@ export default function DownloadApp() {
         'HD video content',
         'Real-time notifications'
       ],
-      apkPath: '/api/download-app?app=uniqenewshd',
+      apkPath: '/app/UniqeNewsHD.apk',
       certificateInfo: {
         md5: 'C9:A3:D8:75:FA:FC:63:11:0D:C6:AB:81:0F:FB:D5:98',
         sha1: '12:98:05:AB:F9:16:A1:5B:CB:9D:53:41:15:DB:BB:D4:77:27:1E:C7',

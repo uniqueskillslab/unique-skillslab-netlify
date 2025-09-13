@@ -37,7 +37,7 @@ export default function PlayStoreApp({ appId }) {
       downloads: '10,000+',
       category: 'Education',
       ageRating: 'Everyone',
-      apkPath: '/api/download-app?app=uniqueskillslab',
+      apkPath: '/app/UniqueSkillsLab.apk',
       price: 'Free'
     },
     uniqenewshd: {
@@ -68,7 +68,7 @@ export default function PlayStoreApp({ appId }) {
       downloads: '5,000+',
       category: 'News & Magazines',
       ageRating: 'Everyone',
-      apkPath: '/api/download-app?app=uniqenewshd',
+      apkPath: '/app/UniqeNewsHD.apk',
       price: 'Free',
       certificateInfo: {
         md5: 'C9:A3:D8:75:FA:FC:63:11:0D:C6:AB:81:0F:FB:D5:98',
