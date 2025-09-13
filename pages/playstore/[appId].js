@@ -69,13 +69,7 @@ export default function PlayStoreApp({ appId }) {
       category: 'News & Magazines',
       ageRating: 'Everyone',
       apkPath: '/app/UniqeNewsHD.apk',
-      price: 'Free',
-      certificateInfo: {
-        md5: 'C9:A3:D8:75:FA:FC:63:11:0D:C6:AB:81:0F:FB:D5:98',
-        sha1: '12:98:05:AB:F9:16:A1:5B:CB:9D:53:41:15:DB:BB:D4:77:27:1E:C7',
-        sha256: 'CC:8F:44:14:6E:76:4B:5E:AC:6A:A6:C2:4B:5F:1D:FA:5A:47:AC:F8:ED:4E:B9:E7:14:A7:88:36:8A:5B:20:76',
-        validUntil: 'Saturday, June 7, 2053'
-      }
+      price: 'Free'
     }
   }
 
@@ -318,30 +312,6 @@ export default function PlayStoreApp({ appId }) {
             </div>
           </div>
 
-          {/* Certificate Information (for UniqeNewsHD) */}
-          {app.certificateInfo && (
-            <div className="bg-white rounded-2xl shadow-lg p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Security Certificate</h2>
-              <div className="space-y-4">
-                <div>
-                  <span className="text-gray-600 text-sm">MD5</span>
-                  <p className="font-mono text-sm break-all">{app.certificateInfo.md5}</p>
-                </div>
-                <div>
-                  <span className="text-gray-600 text-sm">SHA1</span>
-                  <p className="font-mono text-sm break-all">{app.certificateInfo.sha1}</p>
-                </div>
-                <div>
-                  <span className="text-gray-600 text-sm">SHA-256</span>
-                  <p className="font-mono text-sm break-all">{app.certificateInfo.sha256}</p>
-                </div>
-                <div>
-                  <span className="text-gray-600 text-sm">Valid Until</span>
-                  <p className="font-medium">{app.certificateInfo.validUntil}</p>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </>

@@ -28,13 +28,7 @@ export default function DownloadApp() {
         'HD video content',
         'Real-time notifications'
       ],
-      apkPath: '/app/UniqeNewsHD.apk',
-      certificateInfo: {
-        md5: 'C9:A3:D8:75:FA:FC:63:11:0D:C6:AB:81:0F:FB:D5:98',
-        sha1: '12:98:05:AB:F9:16:A1:5B:CB:9D:53:41:15:DB:BB:D4:77:27:1E:C7',
-        sha256: 'CC:8F:44:14:6E:76:4B:5E:AC:6A:A6:C2:4B:5F:1D:FA:5A:47:AC:F8:ED:4E:B9:E7:14:A7:88:36:8A:5B:20:76',
-        validUntil: 'Saturday, June 7, 2053'
-      }
+      apkPath: '/app/UniqeNewsHD.apk'
     }
   ];
 
@@ -161,38 +155,6 @@ export default function DownloadApp() {
             </div>
           </div>
 
-          {/* Certificate Information for UniqeNewsHD */}
-          <div className="bg-gray-50 rounded-xl p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              UniqeNewsHD Certificate Information
-            </h3>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div>
-                <h4 className="font-medium text-gray-700 mb-2">MD5</h4>
-                <p className="text-sm text-gray-600 font-mono break-all">
-                  C9:A3:D8:75:FA:FC:63:11:0D:C6:AB:81:0F:FB:D5:98
-                </p>
-              </div>
-              <div>
-                <h4 className="font-medium text-gray-700 mb-2">SHA1</h4>
-                <p className="text-sm text-gray-600 font-mono break-all">
-                  12:98:05:AB:F9:16:A1:5B:CB:9D:53:41:15:DB:BB:D4:77:27:1E:C7
-                </p>
-              </div>
-              <div className="md:col-span-2">
-                <h4 className="font-medium text-gray-700 mb-2">SHA-256</h4>
-                <p className="text-sm text-gray-600 font-mono break-all">
-                  CC:8F:44:14:6E:76:4B:5E:AC:6A:A6:C2:4B:5F:1D:FA:5A:47:AC:F8:ED:4E:B9:E7:14:A7:88:36:8A:5B:20:76
-                </p>
-              </div>
-              <div className="md:col-span-2">
-                <h4 className="font-medium text-gray-700 mb-2">Valid Until</h4>
-                <p className="text-sm text-gray-600">
-                  Saturday, June 7, 2053
-                </p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>
