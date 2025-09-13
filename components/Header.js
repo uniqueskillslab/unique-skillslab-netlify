@@ -41,15 +41,16 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
       isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
     }`}>
       <div className="container-custom">
-        <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-18 px-4 sm:px-6 lg:px-8">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
+          <Link href="/" className="flex items-center space-x-2 touch-target">
             <img 
               src="/assets/usl_logo.png" 
               alt="Unique Skills Lab Logo" 
-              className="w-10 h-10 object-contain"
+              className="w-8 h-8 sm:w-10 sm:h-10 object-contain"
             />
-            <span className="text-xl font-bold text-gray-900">Unique Skills Lab</span>
+            <span className="text-lg sm:text-xl font-bold text-gray-900 hidden sm:block">Unique Skills Lab</span>
+            <span className="text-lg font-bold text-gray-900 sm:hidden">USL</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -81,7 +82,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
           {/* Mobile menu button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-md text-gray-700 hover:text-primary-500 hover:bg-gray-100 transition-colors duration-200"
+            className="md:hidden touch-target rounded-md text-gray-700 hover:text-primary-500 hover:bg-gray-100 transition-colors duration-200"
             aria-label="Toggle menu"
           >
             <svg
@@ -111,13 +112,13 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200">
-            <div className="px-4 py-2 space-y-1">
+          <div className="md:hidden bg-white border-t border-gray-200 shadow-lg">
+            <div className="px-4 py-3 space-y-1">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`block px-3 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+                  className={`block px-4 py-3 text-base font-medium rounded-lg transition-colors duration-200 touch-target ${
                     router.pathname === item.href
                       ? 'text-primary-500 bg-primary-50'
                       : 'text-gray-700 hover:text-primary-500 hover:bg-gray-50'
@@ -134,7 +135,7 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
                     handleLogout()
                     setIsMenuOpen(false)
                   }}
-                  className="block w-full text-left px-3 py-2 text-sm font-medium text-gray-700 hover:text-red-500 hover:bg-gray-50 rounded-md transition-colors duration-200"
+                  className="block w-full text-left px-4 py-3 text-base font-medium text-gray-700 hover:text-red-500 hover:bg-gray-50 rounded-lg transition-colors duration-200 touch-target"
                 >
                   Logout
                 </button>

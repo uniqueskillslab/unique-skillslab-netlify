@@ -24,7 +24,7 @@ const NotificationBox = () => {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 bg-red-600 text-white p-4 rounded-lg shadow-2xl max-w-sm animate-pulse">
+    <div className="fixed bottom-4 right-4 z-50 bg-red-600 text-white p-4 rounded-lg shadow-2xl max-w-sm animate-pulse mobile-optimized">
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <div className="text-2xl">📢</div>
@@ -37,7 +37,7 @@ const NotificationBox = () => {
         {/* Close button */}
         <button
           onClick={handleDismiss}
-          className="ml-2 text-white hover:text-gray-300 transition-colors duration-200 p-1"
+          className="ml-2 text-white hover:text-gray-300 transition-colors duration-200 touch-target"
           aria-label="Close notification"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -48,7 +48,7 @@ const NotificationBox = () => {
       
       <Link 
         href="/courses" 
-        className="block mt-2 bg-white text-red-600 text-xs font-semibold py-1 px-3 rounded text-center hover:bg-gray-100 transition-colors duration-200"
+        className="block mt-2 bg-white text-red-600 text-xs font-semibold py-2 px-3 rounded text-center hover:bg-gray-100 transition-colors duration-200 touch-target"
       >
         Apply Now
       </Link>

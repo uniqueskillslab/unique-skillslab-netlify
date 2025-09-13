@@ -28,7 +28,7 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>Unique Skills Lab - Practical IT & Media Training</title>
         <meta name="description" content="Short courses in Digital Marketing, App Development, Video Editing, and News Anchoring in a real studio environment. Learn practical skills for real careers." />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta name="keywords" content="IT training, media courses, digital marketing, app development, video editing, news anchoring, practical skills, studio training" />
         <meta name="author" content="Unique Skills Lab" />
         
